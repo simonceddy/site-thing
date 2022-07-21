@@ -1,27 +1,34 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const emptySequence = [
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+];
+
 const initialState = {
   playing: false,
   currentStep: 0,
-  tempo: 120,
-  steps: [
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]
+  seqLength: 16,
+  steps: {
+    track1: [...emptySequence],
+    track2: [...emptySequence],
+    track3: [...emptySequence],
+    track4: [...emptySequence],
+  }
 };
 
 export const sequencerSlice = createSlice({
@@ -29,14 +36,15 @@ export const sequencerSlice = createSlice({
   initialState,
   reducers: {
     toggleStep: (state, action) => {
-      state.steps[action.payload] = !state.steps[action.payload];
+      const { track, step } = action.payload;
+      state.steps[track][step] = !state.steps[track][step];
     },
     togglePlay: (state) => {
       state.playing = !state.playing;
     },
     nextStep: (state) => {
       const newStep = state.currentStep + 1;
-      state.currentStep = newStep >= state.steps.length ? 0 : newStep;
+      state.currentStep = newStep >= state.seqLength ? 0 : newStep;
     },
     resetSteps: (state) => {
       state.currentStep = 0;
@@ -44,14 +52,14 @@ export const sequencerSlice = createSlice({
     clearSteps: (state) => {
       state.steps = initialState.steps;
     },
-    setTempo: (state, action) => {
-      state.tempo = action.payload;
+    setSequenceLength: (state, action) => {
+      state.seqLength = action.payload;
     }
   },
 });
 
 export const {
-  toggleStep, togglePlay, nextStep, resetSteps, clearSteps, setTempo
+  toggleStep, togglePlay, nextStep, resetSteps, clearSteps, setSequenceLength
 } = sequencerSlice.actions;
 
 export default sequencerSlice.reducer;

@@ -3,7 +3,6 @@ import AppContainer from './components/AppContainer';
 import AppTitle from './components/AppTitle';
 import Navbar from './components/Navbar';
 import AppRoutes from './containers/AppRoutes';
-import Sequencer from './features/sequencer/Sequencer';
 
 function App() {
   return (
@@ -13,7 +12,6 @@ function App() {
         <Navbar />
         <AppRoutes />
       </div>
-      <Sequencer />
     </AppContainer>
   );
 }
