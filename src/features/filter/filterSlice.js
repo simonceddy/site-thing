@@ -2,7 +2,10 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const filterSlice = createSlice({
   name: 'filters',
-  initialState: {},
+  initialState: {
+    f1: null,
+    f2: null,
+  },
   reducers: {
 
   },

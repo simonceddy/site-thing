@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useDispatch, useSelector } from 'react-redux';
 import {
   GiPlayButton as PlayButton,
@@ -8,14 +9,15 @@ import {
 import { useEffect, useRef } from 'react';
 import { throttle } from 'lodash';
 import {
-  nextStep, resetSteps, setSequenceLength, togglePlay, toggleStep
+  nextStep, resetSteps, setSequenceLength, toggleStep
 } from './sequencerSlice';
-import { setTempo } from '../masterClock/masterClockSlice';
+import { setTempo, togglePlay } from '../masterClock/masterClockSlice';
+import SequencerTrack from '../../components/AudioSystem/Sequencer/SequencerTrack';
 
 // TODO make better
 function makeSteps(steps = 16) {
   const stepsArr = [];
-  for (let i = 0; i < steps; i + 1) {
+  for (let i = 0; i < steps; i++) {
     stepsArr.push(i + 1);
   }
   return stepsArr;
@@ -25,9 +27,9 @@ const stepKeys = makeSteps(16);
 
 function Sequencer() {
   const {
-    steps, playing, currentStep, seqLength
+    steps, currentStep, seqLength
   } = useSelector((state) => state.sequencer);
-  const tempo = useSelector((state) => state.masterClock.tempo);
+  const { tempo, playing } = useSelector((state) => state.masterClock);
   const dispatch = useDispatch();
   const intervalRef = useRef(null);
 
@@ -47,7 +49,7 @@ function Sequencer() {
 
   return (
     <div className="flex flex-row justify-start items-center">
-      <div className="bg-slate-400 dark:bg-slate-900 mr-2 flex flex-col justify-start items-center rounded">
+      <div className="bg-slate-400 dark:bg-slate-900 mr-2 flex flex-col justify-start items-center rounded border-2 border-blue-500">
         <div className="p-2 flex flex-row justify-around border-b-2 border-blue-500 items-center w-full">
           <button
             type="button"
@@ -67,7 +69,7 @@ function Sequencer() {
             <ResetButton size={30} />
           </button>
         </div>
-        <div className="p-2 flex flex-row justify-between items-center border-b-2 border-blue-500 w-full">
+        <div className="p-2 flex flex-row justify-between items-center w-full">
           <label htmlFor="sequence-length-input">
             <input
               name="sequence-length-input"
@@ -81,49 +83,25 @@ function Sequencer() {
             />
           </label>
         </div>
-        <div className="p-2 w-full">
-          <label htmlFor="tempo-slider" className="flex flex-col justify-start items-start mx-2 p-1">
-            <span className="m-1 italic font-mono p-1 border border-green-400 rounded">{tempo} BPM</span>
-            <input
-              type="range"
-              min={20}
-              max={400}
-              step={1}
-              className="w-20"
-              id="tempo-slider"
-              name="tempo-slider"
-              value={tempo}
-              onChange={tempoHandler}
-            />
-          </label>
-        </div>
+
       </div>
       <div className="flex flex-col justify-start items-start">
         <div
           className="flex flex-row justify-start items-center"
         >
           {stepKeys.map((step) => (
-            <div className="w-4 h-4 m-1" key={`step-header-${step}`}>
+            <div className={`w-5 h-5 m-1 text-center font-mono text-sm ${currentStep === (step - 1) ? 'text-green-700 dark:text-green-300' : ''}`} key={`step-header-${step}`}>
               {step}
             </div>
           ))}
         </div>
         {Object.keys(steps).map((track, trackIndex) => (
-          <div
-            className="flex flex-row justify-start items-center"
+          <SequencerTrack
             key={`sequencer-track-${trackIndex}`}
-          >
-            {steps[track].map((active, index) => (
-              <button
-                type="button"
-                key={`sequencer-button-${index}`}
-                onClick={() => dispatch(toggleStep({ step: index, track }))}
-                className={`w-4 h-4 border-2 ${currentStep === index ? 'border-yellow-500' : 'border-slate-600'} ${active ? 'bg-green-500' : 'bg-gray-300'} m-1 rounded hover:border-blue-400 ${index < seqLength ? '' : 'bg-opacity-25'}`}
-              >
-                {}
-              </button>
-            ))}
-          </div>
+            track={track}
+            steps={steps[track]}
+            onStepClick={(step) => dispatch(toggleStep({ step, track }))}
+          />
         ))}
       </div>
     </div>

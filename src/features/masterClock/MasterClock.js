@@ -1,10 +1,24 @@
+/* eslint-disable no-unused-vars */
 import { throttle } from 'lodash';
+import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTempo } from './masterClockSlice';
 
 function MasterClock() {
-  const tempo = useSelector((state) => state.masterClock.tempo);
+  const { tempo, playing } = useSelector((state) => state.masterClock);
   const dispatch = useDispatch();
+
+  const intervalRef = useRef(null);
+
+  // const intervalHandler = () => {
+  //   clearInterval(intervalRef.current);
+  //   if (playing) {
+  //     // set up interval
+  //     intervalRef.current = setInterval(() => {
+  //       dispatch(nextStep());
+  //     }, (60 / tempo) * 1000);
+  //   }
+  // };
 
   const tempoHandler = throttle((e) => dispatch(setTempo(Number(e.target.value))), 100);
   return (
