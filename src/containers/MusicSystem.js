@@ -2,6 +2,7 @@ import { Provider } from 'react-redux';
 import Sequencer from '../features/sequencer/Sequencer';
 import MasterClock from '../features/masterClock/MasterClock';
 import { audioSystemStore } from '../app/audioSystemStore';
+// import Compressor from '../features/compressor/Compressor';
 
 function MusicSystem() {
   return (
@@ -11,6 +12,7 @@ function MusicSystem() {
           <MasterClock />
           <Sequencer />
         </div>
+        {/* <Compressor /> */}
         {}
       </div>
     </Provider>

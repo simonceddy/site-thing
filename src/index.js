@@ -6,6 +6,7 @@ import { store } from './app/store';
 import App from './App';
 import './styles/index.css';
 import './styles/tailwind.css';
+import './lib/input-knobs';
 
 const container = document.getElementById('root');
 const root = createRoot(container);

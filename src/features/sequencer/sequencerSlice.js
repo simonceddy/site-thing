@@ -19,10 +19,19 @@ const emptySequence = [
   false,
 ];
 
+export const seqModes = {
+  fwd: 'fwd',
+  rev: 'rev',
+  ppg: 'ppg',
+  pen: 'pen',
+  rnd: 'rnd',
+};
+
 const initialState = {
   playing: false,
   currentStep: 0,
   seqLength: 16,
+  mode: seqModes.fwd,
   steps: {
     track1: [...emptySequence],
     track2: [...emptySequence],

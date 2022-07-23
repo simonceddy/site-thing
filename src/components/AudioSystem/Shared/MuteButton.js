@@ -1,8 +1,13 @@
+import SmlSqrLabelBtn from './SmlSqrLabelBtn';
+
 function MuteButton({ onClick, active = false }) {
   return (
-    <button type="button" className={`w-5 h-5 text-center font-mono font-bold ${active ? 'bg-red-500 text-blue-900' : 'bg-slate-500 text-blue-800'}`} onClick={onClick}>
+    <SmlSqrLabelBtn
+      className={`${active ? 'bg-red-500 text-blue-900' : 'bg-slate-500 text-blue-800 dark:text-blue-400'}`}
+      onClick={onClick}
+    >
       M
-    </button>
+    </SmlSqrLabelBtn>
   );
 }
 

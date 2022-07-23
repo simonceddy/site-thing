@@ -5,6 +5,8 @@ import modMatrix from '../features/modMatrix/modMatrixSlice';
 import voices from '../features/voices/voicesSlice';
 import filters from '../features/filter/filterSlice';
 import modulators from '../features/modulators/modulatorSlice';
+import programEq from '../features/eddyqualiser/programEqSlice';
+import compressor from '../features/compressor/compressorSlice';
 
 export const audioSystemStore = configureStore({
   reducer: {
@@ -13,6 +15,8 @@ export const audioSystemStore = configureStore({
     modMatrix,
     voices,
     filters,
-    modulators
+    modulators,
+    programEq,
+    compressor
   },
 });

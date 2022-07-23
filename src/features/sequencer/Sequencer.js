@@ -7,11 +7,10 @@ import {
   MdReplay as ResetButton,
 } from 'react-icons/md';
 import { useEffect, useRef } from 'react';
-import { throttle } from 'lodash';
 import {
   nextStep, resetSteps, setSequenceLength, toggleStep
 } from './sequencerSlice';
-import { setTempo, togglePlay } from '../masterClock/masterClockSlice';
+import { togglePlay } from '../masterClock/masterClockSlice';
 import SequencerTrack from '../../components/AudioSystem/Sequencer/SequencerTrack';
 
 // TODO make better
@@ -45,8 +44,6 @@ function Sequencer() {
 
   useEffect(intervalHandler, [playing, tempo]);
 
-  const tempoHandler = throttle((e) => dispatch(setTempo(Number(e.target.value))), 100);
-
   return (
     <div className="flex flex-row justify-start items-center">
       <div className="bg-slate-400 dark:bg-slate-900 mr-2 flex flex-col justify-start items-center rounded border-2 border-blue-500">
@@ -69,8 +66,9 @@ function Sequencer() {
             <ResetButton size={30} />
           </button>
         </div>
-        <div className="p-2 flex flex-row justify-between items-center w-full">
+        <div className="p-2 flex flex-row justify-between items-center w-full border-b-2 border-blue-500 font-mono">
           <label htmlFor="sequence-length-input">
+            <span className="text-sm mr-1">Length</span>
             <input
               name="sequence-length-input"
               id="sequence-length-input"
@@ -83,7 +81,11 @@ function Sequencer() {
             />
           </label>
         </div>
-
+        <div className="p-2 flex flex-row justify-between items-center w-full">
+          <label htmlFor="sequence-mode-input">
+            {}
+          </label>
+        </div>
       </div>
       <div className="flex flex-col justify-start items-start">
         <div
