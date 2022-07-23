@@ -11,7 +11,7 @@ import {
   nextStep, resetSteps, setSequenceLength, toggleStep
 } from './sequencerSlice';
 import { togglePlay } from '../masterClock/masterClockSlice';
-import SequencerTrack from '../../components/AudioSystem/Sequencer/SequencerTrack';
+import SequencerTrack from '../../../components/AudioSystem/Sequencer/SequencerTrack';
 
 // TODO make better
 function makeSteps(steps = 16) {

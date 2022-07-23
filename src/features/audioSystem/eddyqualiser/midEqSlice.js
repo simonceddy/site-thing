@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { midEq } from '../../support/audioSystem';
+import { midEq } from '../../../support/audioSystem';
 
 export const eddyqualiserSlice = createSlice({
   name: 'eddyqualiser',

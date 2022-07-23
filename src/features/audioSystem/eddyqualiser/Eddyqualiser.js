@@ -1,4 +1,4 @@
-import RackUnit from '../../components/AudioSystem/RackUnits/RackUnit';
+import RackUnit from '../../../components/AudioSystem/RackUnits/RackUnit';
 
 function Eddyqualiser() {
   return (

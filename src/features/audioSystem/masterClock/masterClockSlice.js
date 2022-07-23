@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { makeClockMod } from '../../support/audioSystem';
+import { makeClockMod } from '../../../support/audioSystem';
 
 export const masterClockSlice = createSlice({
   name: 'masterClock',

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { programEq } from '../../support/audioSystem';
+import { programEq } from '../../../support/audioSystem';
 
 export const programEqSlice = createSlice({
   name: 'programEq',

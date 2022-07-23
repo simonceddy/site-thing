@@ -2,7 +2,7 @@
 import { throttle } from 'lodash';
 import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import RotaryKnob from '../../components/AudioSystem/Shared/RotaryKnob';
+import RotaryKnob from '../../../components/AudioSystem/Shared/RotaryKnob';
 import { setTempo } from './masterClockSlice';
 
 function MasterClock() {

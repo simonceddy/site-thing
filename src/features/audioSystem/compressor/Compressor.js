@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import { useDispatch, useSelector } from 'react-redux';
-import RackUnit from '../../components/AudioSystem/RackUnits/RackUnit';
-import RotaryKnob from '../../components/AudioSystem/Shared/RotaryKnob';
-import { paramData, validCompParamValue } from '../../support/audioSystem';
+import RackUnit from '../../../components/AudioSystem/RackUnits/RackUnit';
+import RotaryKnob from '../../../components/AudioSystem/Shared/RotaryKnob';
+import { paramData, validCompParamValue } from '../../../support/audioSystem';
 import { setCompressorParam } from './compressorSlice';
 
 function Compressor() {
