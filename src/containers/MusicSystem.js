@@ -1,8 +1,8 @@
 import { Provider } from 'react-redux';
-import Sequencer from '../features/sequencer/Sequencer';
-import MasterClock from '../features/masterClock/MasterClock';
+import Sequencer from '../features/audioSystem/sequencer/Sequencer';
+import MasterClock from '../features/audioSystem/masterClock/MasterClock';
 import { audioSystemStore } from '../app/audioSystemStore';
-// import Compressor from '../features/compressor/Compressor';
+// import Compressor from '../features/audioSystem/compressor/Compressor';
 
 function MusicSystem() {
   return (
