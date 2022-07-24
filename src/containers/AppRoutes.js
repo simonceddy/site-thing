@@ -4,6 +4,8 @@ import ContentContainer from '../components/ContentContainer';
 import HomePage from '../pages/Home';
 import DevPage from '../pages/Dev';
 import AudioPage from '../pages/Audio';
+import MiscStuff from './MiscStuff';
+import SynthBasics from '../features/synthBasics/SynthBasics';
 // import MusicSystem from './MusicSystem';
 
 const MusicSystem = lazy(() => import('./MusicSystem'));
@@ -25,6 +27,8 @@ function AppRoutes() {
         <Route path="/audio" element={<AudioPage />} />
         <Route path="/audio-system" element={<AsyncMusicSystem />} />
         <Route path="/settings" element={<AudioPage />} />
+        <Route path="/misc" element={<MiscStuff />} />
+        <Route path="/misc/synth-basics" element={<SynthBasics />} />
       </Routes>
     </ContentContainer>
   );

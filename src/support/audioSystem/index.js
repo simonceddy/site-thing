@@ -1,3 +1,5 @@
+import Wad from 'web-audio-daw';
+
 /**
  * Create a clock modulator object
  * @param {number} tempo Clock rate
@@ -65,4 +67,21 @@ export function validCompParamValue(key, val = 1) {
     return val;
   }
   return 1;
+}
+
+export const defaultVoices = {
+  voice1: { src: 'samples/dune3 kick1 duller.mp3' },
+  voice2: { src: 'samples/phaseplant brushbashingsnare1.mp3' },
+  voice3: { src: 'samples/phaseplant hat med 1.mp3' },
+  voice4: { src: 'samples/phaseplant phaseyhat1.mp3' },
+};
+
+// const test = new Wad({ source: voices.voice1.src });
+
+export function loadVoices(voices = []) {
+  const loadedVoices = voices.map(({ src }) => (
+    new Wad({ source: src })
+  ));
+
+  return loadedVoices;
 }

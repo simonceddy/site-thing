@@ -20,6 +20,7 @@ function Navbar() {
       <NavbarLink to="/">Home</NavbarLink>
       <NavbarLink to="/dev">Web Dev</NavbarLink>
       <NavbarLink to="/audio">Audio</NavbarLink>
+      <NavbarLink to="/misc">Misc</NavbarLink>
       <NavbarLink to="/audio-system">????</NavbarLink>
     </div>
   );
