@@ -52,6 +52,76 @@ const initialState = {
   }
 };
 
+const fwdStep = (state) => {
+  const newStep = state.currentStep + 1;
+  return newStep >= state.seqLength ? 0 : newStep;
+};
+
+const revStep = (state) => {
+  const newStep = state.currentStep - 1;
+  return newStep < 0 ? state.seqLength - 1 : newStep;
+};
+
+const penStep = (state) => {
+  let newStep = state.currentStep;
+  if (state.direction === 'asc') {
+    if (state.currentStep === state.seqLength - 1) {
+      newStep = state.seqLength - 2;
+      state.direction = 'desc';
+    } else {
+      newStep = state.currentStep + 1;
+    }
+  } else if (state.currentStep === 0) {
+    newStep = 1;
+    state.direction = 'asc';
+  } else {
+    newStep = state.currentStep - 1;
+  }
+  return newStep;
+};
+
+const ppgStep = (state) => {
+  let newStep = state.currentStep;
+  if (state.direction === 'asc') {
+    if (state.currentStep >= state.seqLength - 1) {
+      state.direction = 'desc';
+    } else {
+      newStep = state.currentStep + 1;
+    }
+  } else if (state.currentStep <= 0) {
+    state.direction = 'asc';
+  } else {
+    newStep = state.currentStep - 1;
+  }
+  return newStep;
+};
+
+const rndStep = (state) => Math.floor(Math.random() * state.seqLength);
+
+const nextStepHander = (state) => {
+  let newStep = state.currentStep;
+  switch (state.mode) {
+    case seqModes.rnd:
+      newStep = rndStep(state);
+      break;
+    case seqModes.ppg:
+      newStep = ppgStep(state);
+      break;
+    case seqModes.pen:
+      newStep = penStep(state);
+      break;
+    case seqModes.rev:
+      newStep = revStep(state);
+      break;
+    case seqModes.fwd:
+    default:
+      newStep = fwdStep(state);
+      break;
+  }
+
+  state.currentStep = newStep;
+};
+
 export const sequencerSlice = createSlice({
   name: 'sequencer',
   initialState,
@@ -63,45 +133,46 @@ export const sequencerSlice = createSlice({
     togglePlay: (state) => {
       state.playing = !state.playing;
     },
-    nextStep: (state) => {
-      let newStep = state.currentStep;
-      if (state.mode === seqModes.fwd) {
-        newStep = state.currentStep + 1;
-        if (newStep >= state.seqLength) newStep = 0;
-      } else if (state.mode === seqModes.rev) {
-        newStep = state.currentStep - 1;
-        if (newStep < 0) newStep = state.seqLength - 1;
-      } else if (state.mode === seqModes.ppg) {
-        if (state.direction === 'asc') {
-          if (state.currentStep >= state.seqLength - 1) {
-            state.direction = 'desc';
-          } else {
-            newStep = state.currentStep + 1;
-          }
-        } else if (state.currentStep <= 0) {
-          state.direction = 'asc';
-        } else {
-          newStep = state.currentStep - 1;
-        }
-      } else if (state.mode === seqModes.pen) {
-        if (state.direction === 'asc') {
-          if (state.currentStep === state.seqLength - 1) {
-            newStep = state.seqLength - 2;
-            state.direction = 'desc';
-          } else {
-            newStep = state.currentStep + 1;
-          }
-        } else if (state.currentStep === 0) {
-          newStep = 1;
-          state.direction = 'asc';
-        } else {
-          newStep = state.currentStep - 1;
-        }
-      } else if (state.mode === seqModes.rnd) {
-        newStep = Math.floor(Math.random() * state.seqLength);
-      }
-      state.currentStep = newStep;
-    },
+    nextStep: nextStepHander,
+    // nextStep: (state) => {
+    //   let newStep = state.currentStep;
+    //   if (state.mode === seqModes.fwd) {
+    //     newStep = state.currentStep + 1;
+    //     if (newStep >= state.seqLength) newStep = 0;
+    //   } else if (state.mode === seqModes.rev) {
+    //     newStep = state.currentStep - 1;
+    //     if (newStep < 0) newStep = state.seqLength - 1;
+    //   } else if (state.mode === seqModes.ppg) {
+    //     if (state.direction === 'asc') {
+    //       if (state.currentStep >= state.seqLength - 1) {
+    //         state.direction = 'desc';
+    //       } else {
+    //         newStep = state.currentStep + 1;
+    //       }
+    //     } else if (state.currentStep <= 0) {
+    //       state.direction = 'asc';
+    //     } else {
+    //       newStep = state.currentStep - 1;
+    //     }
+    //   } else if (state.mode === seqModes.pen) {
+    //     if (state.direction === 'asc') {
+    //       if (state.currentStep === state.seqLength - 1) {
+    //         newStep = state.seqLength - 2;
+    //         state.direction = 'desc';
+    //       } else {
+    //         newStep = state.currentStep + 1;
+    //       }
+    //     } else if (state.currentStep === 0) {
+    //       newStep = 1;
+    //       state.direction = 'asc';
+    //     } else {
+    //       newStep = state.currentStep - 1;
+    //     }
+    //   } else if (state.mode === seqModes.rnd) {
+    //     newStep = Math.floor(Math.random() * state.seqLength);
+    //   }
+    //   state.currentStep = newStep;
+    // },
     resetSteps: (state) => {
       state.direction = 'asc';
       state.currentStep = 0;
