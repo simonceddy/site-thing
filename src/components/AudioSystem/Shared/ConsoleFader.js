@@ -1,12 +1,14 @@
+import RotaryKnob from './RotaryKnob';
+
 function ConsoleFader({ value, onChange }) {
   return (
     <div>
-      <input
-        type="range"
-        className="w-14 h-5 -rotate-90"
-        min={-60}
-        max={12}
-        step={0.1}
+      <RotaryKnob
+        className="m-1"
+        diameter={45}
+        min={0}
+        max={1}
+        step={0.01}
         value={value}
         onChange={onChange}
       />

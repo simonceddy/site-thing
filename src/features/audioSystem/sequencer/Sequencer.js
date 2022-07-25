@@ -6,7 +6,7 @@ import {
 import {
   MdReplay as ResetButton,
 } from 'react-icons/md';
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, /* useMemo,  */useRef } from 'react';
 import {
   nextStep,
   resetSteps,
@@ -19,7 +19,7 @@ import {
 } from './sequencerSlice';
 import { togglePlay } from '../masterClock/masterClockSlice';
 import SequencerTrack from '../../../components/AudioSystem/Sequencer/SequencerTrack';
-import { loadVoices } from '../../../support/audioSystem';
+// import { loadVoices } from '../../../support/audioSystem';
 
 // TODO make better
 function makeSteps(steps = 16) {
@@ -46,13 +46,13 @@ const stepKeys = makeSteps(16);
 
 function Sequencer() {
   const {
-    steps, currentStep, seqLength, mode, stepLength, direction
+    steps, currentStep, seqLength, mode, stepLength, /* direction */
   } = useSelector((state) => state.sequencer);
   const { tempo, playing } = useSelector((state) => state.masterClock);
-  const { tracks } = useSelector((state) => state.voices);
+  // const { tracks } = useSelector((state) => state.voices);
   const dispatch = useDispatch();
   const intervalRef = useRef(null);
-  const voices = useMemo(() => loadVoices(Object.values(tracks)), [tracks]);
+  // const voices = useMemo(() => loadVoices(Object.values(tracks)), [tracks]);
   // console.log(voices);
   const intervalHandler = () => {
     clearInterval(intervalRef.current);
@@ -64,22 +64,22 @@ function Sequencer() {
     }
   };
 
-  const playVoices = async () => {
-    await Promise.all(Object.values(steps).map(async (track, id) => {
-      if (track[currentStep] && voices[id]) {
-        await voices[id].play();
-        // setTimeout(() => {
-        //   voices[id].stop();
-        // }, timeout);
-      }
-    }));
-  };
+  // const playVoices = async () => {
+  //   await Promise.all(Object.values(steps).map(async (track, id) => {
+  //     if (track[currentStep] && voices[id]) {
+  //       await voices[id].play();
+  //       // setTimeout(() => {
+  //       //   voices[id].stop();
+  //       // }, timeout);
+  //     }
+  //   }));
+  // };
 
   useEffect(intervalHandler, [playing, tempo, stepLength]);
 
-  useEffect(() => {
-    if (playing) playVoices(currentStep, steps);
-  }, [currentStep, playing, direction]);
+  // useEffect(() => {
+  //   if (playing) playVoices(currentStep, steps);
+  // }, [currentStep, playing, direction]);
   return (
     <div className="flex flex-row justify-start items-center">
       <div className="bg-slate-400 dark:bg-slate-900 mr-2 flex flex-col justify-start items-center rounded border-2 border-blue-500">

@@ -70,10 +70,10 @@ export function validCompParamValue(key, val = 1) {
 }
 
 export const defaultVoices = {
-  voice1: { src: 'samples/dune3 kick1 duller.mp3' },
-  voice2: { src: 'samples/phaseplant brushbashingsnare1.mp3' },
-  voice3: { src: 'samples/phaseplant hat med 1.mp3' },
-  voice4: { src: 'samples/phaseplant phaseyhat1.mp3' },
+  voice1: { src: '/seq/samples/dune3 kick1 duller.ogg' },
+  voice2: { src: '/seq/samples/phaseplant brushbashingsnare1.ogg' },
+  voice3: { src: '/seq/samples/phaseplant hat med 1.ogg' },
+  voice4: { src: '/seq/samples/phaseplant phaseyhat1.ogg' },
 };
 
 // const test = new Wad({ source: voices.voice1.src });
