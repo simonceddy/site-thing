@@ -5,6 +5,10 @@ const mixerChannelObj = {
   panning: 0,
   mute: false,
   solo: false,
+  compressor: null,
+  eq: null,
+  hpf: null,
+  lpf: null
 };
 
 const trackParamUpdater = (param) => (state, action) => {

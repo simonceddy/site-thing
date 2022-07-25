@@ -69,11 +69,30 @@ export function validCompParamValue(key, val = 1) {
   return 1;
 }
 
+export const allVoices = [
+  {
+    name: 'Dune Kick',
+    src: '/seq/samples/dune3 kick1 duller.ogg'
+  },
+  {
+    name: 'Plant Brush Snare',
+    src: '/seq/samples/phaseplant brushbashingsnare1.ogg'
+  },
+  {
+    name: 'Plant Hat',
+    src: '/seq/samples/phaseplant hat med 1.ogg'
+  },
+  {
+    name: 'Plant Phase Hat',
+    src: '/seq/samples/phaseplant phaseyhat1.ogg'
+  },
+];
+
 export const defaultVoices = {
-  voice1: { src: '/seq/samples/dune3 kick1 duller.ogg' },
-  voice2: { src: '/seq/samples/phaseplant brushbashingsnare1.ogg' },
-  voice3: { src: '/seq/samples/phaseplant hat med 1.ogg' },
-  voice4: { src: '/seq/samples/phaseplant phaseyhat1.ogg' },
+  voice1: allVoices[0],
+  voice2: allVoices[1],
+  voice3: allVoices[2],
+  voice4: allVoices[3],
 };
 
 // const test = new Wad({ source: voices.voice1.src });
