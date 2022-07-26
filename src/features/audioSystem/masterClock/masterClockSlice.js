@@ -5,6 +5,7 @@ export const masterClockSlice = createSlice({
   name: 'masterClock',
   initialState: {
     tempo: 120,
+    tick: false,
     playing: false,
     clockMods: {
       clockMod1: null,
@@ -25,10 +26,14 @@ export const masterClockSlice = createSlice({
         state.tempo,
         action.payload.divisor
       );
+    },
+    tick: (state) => {
+      state.tick = !state.tick;
+      // console.log(state.tick);
     }
   },
 });
 
-export const { setTempo, togglePlay } = masterClockSlice.actions;
+export const { setTempo, togglePlay, tick } = masterClockSlice.actions;
 
 export default masterClockSlice.reducer;

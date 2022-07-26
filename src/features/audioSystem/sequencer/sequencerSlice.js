@@ -40,8 +40,8 @@ export const stepLengths = [
 const initialState = {
   playing: false,
   currentStep: 0,
-  seqLength: 16,
-  stepLength: 1,
+  seqLength: 8,
+  stepLength: 0.5,
   mode: seqModes.fwd,
   direction: 'asc', // only used by pen and ppg
   steps: {

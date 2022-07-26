@@ -69,37 +69,108 @@ export function validCompParamValue(key, val = 1) {
   return 1;
 }
 
-export const allVoices = [
-  {
-    name: 'Dune Kick',
+export const allVoices = {
+  duneDullKick: {
+    key: 'duneDullKick',
+    name: 'Dune Dull Kick',
     src: '/seq/samples/dune3 kick1 duller.ogg'
   },
-  {
+  duneKick: {
+    key: 'duneKick',
+    name: 'Dune Kick',
+    src: '/seq/samples/dune3 kick1.ogg'
+  },
+  plantAlmostKick: {
+    key: 'plantAlmostKick',
+    name: 'Plant Almost Kick',
+    src: '/seq/samples/phaseplant almostkick1.ogg'
+  },
+  plantGravityKick: {
+    key: 'plantGravityKick',
+    name: 'Plant Gravity Kick',
+    src: '/seq/samples/phaseplant gravitykick1.ogg'
+  },
+  plantGrimeKick: {
+    key: 'plantGrimeKick',
+    name: 'Plant Grime Kick',
+    src: '/seq/samples/phaseplant grimekick1.ogg'
+  },
+  plantAlmostSnare: {
+    key: 'plantAlmostSnare',
+    name: 'Plant Almost Snare',
+    src: '/seq/samples/phaseplant almostsnare1.ogg'
+  },
+  plantBrushSnare: {
+    key: 'plantBrushSnare',
     name: 'Plant Brush Snare',
     src: '/seq/samples/phaseplant brushbashingsnare1.ogg'
   },
-  {
+  plantDigiTunedSnare: {
+    key: 'plantDigiTunedSnare',
+    name: 'Plant Digi Tuned Snare',
+    src: '/seq/samples/phaseplant digitunedsnare1.ogg'
+  },
+  plantDrJSnare: {
+    key: 'plantDrJSnare',
+    name: 'Plant Dr J Snare',
+    src: '/seq/samples/phaseplant doctor j snare.ogg'
+  },
+  plantHat: {
+    key: 'plantHat',
     name: 'Plant Hat',
     src: '/seq/samples/phaseplant hat med 1.ogg'
   },
-  {
+  plantPhaseHat: {
+    key: 'plantPhaseHat',
     name: 'Plant Phase Hat',
     src: '/seq/samples/phaseplant phaseyhat1.ogg'
   },
-];
+  plantFuzzTom: {
+    key: 'plantFuzzTom',
+    name: 'Plant Fuzz Tom',
+    src: '/seq/samples/phaseplant fuzzytom1.ogg'
+  },
+  plantDigiPerc: {
+    key: 'plantDigiPerc',
+    name: 'Plant Digi Perc',
+    src: '/seq/samples/phaseplant digiperc1.ogg'
+  },
+  plantGlitchHit1: {
+    key: 'plantGlitchHit1',
+    name: 'Plant Glitch Hit',
+    src: '/seq/samples/phaseplant glitchhit1.ogg'
+  },
+  plantGlitchPerc: {
+    key: 'plantGlitchPerc',
+    name: 'Plant Glitch Perc',
+    src: '/seq/samples/phaseplant glitchperc 2.ogg'
+  },
+  plantGong: {
+    key: 'plantGong',
+    name: 'Plant Gong ',
+    src: '/seq/samples/phaseplant gong1.ogg'
+  },
+  plantLaser: {
+    key: 'plantLaser',
+    name: 'Plant Laser ',
+    src: '/seq/samples/phaseplant laser1.ogg'
+  },
+};
 
 export const defaultVoices = {
-  voice1: allVoices[0],
-  voice2: allVoices[1],
-  voice3: allVoices[2],
-  voice4: allVoices[3],
+  voice1: allVoices.duneDullKick,
+  voice2: allVoices.plantBrushSnare,
+  voice3: allVoices.plantHat,
+  voice4: allVoices.plantPhaseHat,
 };
 
 // const test = new Wad({ source: voices.voice1.src });
 
 export function loadVoices(voices = []) {
   const loadedVoices = voices.map(({ src }) => (
-    new Wad({ source: src })
+    new Wad({
+      source: src
+    })
   ));
 
   return loadedVoices;

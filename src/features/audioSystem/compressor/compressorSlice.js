@@ -7,7 +7,8 @@ const params = {
   attack: 10,
   release: 30,
   makeupGain: 0,
-  knee: 0
+  knee: 0,
+  mix: 100,
 };
 
 export const compressorSlice = createSlice({

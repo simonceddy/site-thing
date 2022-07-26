@@ -4,6 +4,7 @@ function ConsoleFader({ value, onChange }) {
   return (
     <div>
       <RotaryKnob
+        // type="range"
         className="m-1"
         diameter={45}
         min={0}

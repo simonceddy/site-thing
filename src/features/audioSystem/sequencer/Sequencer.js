@@ -17,7 +17,7 @@ import {
   stepLengths,
   toggleStep
 } from './sequencerSlice';
-import { togglePlay } from '../masterClock/masterClockSlice';
+import { tick, togglePlay } from '../masterClock/masterClockSlice';
 import SequencerTrack from '../../../components/AudioSystem/Sequencer/SequencerTrack';
 // import { loadVoices } from '../../../support/audioSystem';
 
@@ -60,6 +60,7 @@ function Sequencer() {
       // set up interval
       intervalRef.current = setInterval(() => {
         dispatch(nextStep());
+        dispatch(tick());
       }, ((60 / tempo) * 1000) * stepLength);
     }
   };
@@ -159,7 +160,7 @@ function Sequencer() {
           className="flex flex-row justify-start items-center"
         >
           {stepKeys.map((step) => (
-            <div className={`w-5 h-5 m-1 text-center font-mono text-sm ${currentStep === (step - 1) ? 'text-green-700 dark:text-green-300' : ''}`} key={`step-header-${step}`}>
+            <div className={`w-5 h-5 m-1 text-center font-mono text-sm ${currentStep === (step - 1) ? 'text-green-700 dark:text-green-300' : ''} ${step > seqLength ? 'opacity-40' : null}`} key={`step-header-${step}`}>
               {step}
             </div>
           ))}

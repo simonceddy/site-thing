@@ -20,6 +20,7 @@ const trackParamUpdater = (param) => (state, action) => {
 export const mixerSlice = createSlice({
   name: 'mixer',
   initialState: {
+    master: { volume: 1, compressorOn: false, eqOn: false },
     tracks: {
       voice1: { ...mixerChannelObj },
       voice2: { ...mixerChannelObj },
@@ -40,12 +41,27 @@ export const mixerSlice = createSlice({
       }
     },
     setVolumeFor: trackParamUpdater('volume'),
-    setPanningFor: trackParamUpdater('panning')
+    setPanningFor: trackParamUpdater('panning'),
+    setMasterVolume: (state, action) => {
+      state.master.volume = action.payload;
+    },
+    toggleMasterComp: (state) => {
+      state.master.compressorOn = !state.master.compressorOn;
+    },
+    toggleMasterEq: (state) => {
+      state.master.eqOn = !state.master.eqOn;
+    },
   },
 });
 
 export const {
-  toggleMuteFor, toggleSoloFor, setPanningFor, setVolumeFor
+  toggleMuteFor,
+  toggleSoloFor,
+  setPanningFor,
+  setVolumeFor,
+  setMasterVolume,
+  toggleMasterComp,
+  toggleMasterEq
 } = mixerSlice.actions;
 
 export default mixerSlice.reducer;

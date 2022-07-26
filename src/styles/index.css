@@ -41,7 +41,7 @@ code {
 }
 
 .navbar-link-light {
-  background-color: lightyellow;
+  background-color: gray;
 }
 
 .navbar-link.active > .navbar-link-light {
