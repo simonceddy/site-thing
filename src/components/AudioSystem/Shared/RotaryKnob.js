@@ -29,6 +29,8 @@ function RotaryKnob({
       id={id}
       name={name}
       data-diameter={`${diameter}`}
+      data-fgcolor="red"
+      data-bgcolor="blue"
       className={`${className} input-knob`}
       type="range"
       ref={ref}

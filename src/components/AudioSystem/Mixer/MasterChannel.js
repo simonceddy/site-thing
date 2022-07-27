@@ -3,7 +3,10 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Wad from 'web-audio-daw';
+import Compressor from '../../../features/audioSystem/compressor/Compressor';
 import { setMasterVolume, toggleMasterComp, toggleMasterEq } from '../../../features/audioSystem/mixer/mixerSlice';
+import Modal from '../../Modal';
+import ConsoleFader from '../Shared/ConsoleFader';
 import RotaryKnob from '../Shared/RotaryKnob';
 
 function MasterChannel() {
@@ -18,7 +21,12 @@ function MasterChannel() {
   const dispatch = useDispatch();
   return (
     <div className="flex flex-col justify-start items-center h-auto m-2">
-      {/* <div className="p-2 border-2 border-blue-400 rounded-md mb-1 flex flex-col items-start justify-start">
+      {editingComp ? (
+        <Modal active={editingComp} onClose={() => setEditingComp(false)}>
+          <Compressor />
+        </Modal>
+      ) : null}
+      <div className="p-2 border-2 border-blue-400 rounded-md mb-1 flex flex-col items-start justify-start">
         <span className="w-11/12 flex flex-row justify-between items-start p-1">
           <button
             className={`${compressorOn ? 'bg-yellow-400 text-blue-900' : 'bg-slate-800 text-blue-100'} flex flex-row justify hover:border-blue-400 border rounded border-slate-500 dark:border-slate-300 active:border-green-400 between items-center p-1 text-sm font-mono lowercase m-1`}
@@ -35,6 +43,7 @@ function MasterChannel() {
             className={`${editingComp ? 'bg-yellow-400 text-blue-900' : 'bg-slate-800 text-blue-100'} p-1 text-sm font-mono hover:border-blue-400 border rounded border-slate-500 dark:border-slate-300 active:border-green-400 lowercase m-1 w-16`}
             type="button"
             onClick={() => setEditingComp(!editingComp)}
+            disabled={!compressorOn}
           >
             edit
           </button>
@@ -55,28 +64,27 @@ function MasterChannel() {
             className={`${editingEq ? 'bg-yellow-400 text-blue-900' : 'bg-slate-800 text-blue-100'} p-1 text-sm font-mono hover:border-blue-400 border rounded border-slate-500 dark:border-slate-300 active:border-green-400 lowercase m-1 w-16`}
             type="button"
             onClick={() => setEditingEq(!editingEq)}
+            disabled={!eqOn}
           >
             edit
           </button>
         </span>
-      </div> */}
+      </div>
       <div className="p-2 border-2 border-blue-400 rounded-md mb-1 flex flex-col justify-around items-center w-full">
         <span className="font-mono font-bold mb-1">
           Master Gain
         </span>
 
-        <RotaryKnob
-        // type="range"
-          className="m-1"
-          diameter={45}
-          min={0}
-          max={1}
-          step={0.01}
+        <ConsoleFader
           value={volume}
           onChange={(e) => {
             const val = Number(e.target.value);
             if (Wad.setVolume) Wad.setVolume(val);
             dispatch(setMasterVolume(val));
+          }}
+          onDblClick={() => {
+            if (Wad.setVolume) Wad.setVolume(1);
+            dispatch(setMasterVolume(1));
           }}
         />
       </div>

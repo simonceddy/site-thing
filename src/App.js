@@ -3,7 +3,8 @@ import AppContainer from './components/AppContainer';
 // import AppTitle from './components/AppTitle';
 // import Navbar from './components/Navbar';
 // import AppRoutes from './containers/AppRoutes';
-import MusicSystem from './containers/MusicSystem';
+// import MusicSystem from './containers/MusicSystem';
+import MixingDesk from './features/mixingDesk/MixingDesk';
 
 // function ContentDiv({ children }) {
 //   return (
@@ -23,7 +24,8 @@ function App() {
         <Navbar />
         <AppRoutes />
       </ContentDiv> */}
-      <MusicSystem />
+      {/* <MusicSystem /> */}
+      <MixingDesk />
     </AppContainer>
   );
 }
