@@ -4,7 +4,8 @@ import AppContainer from './components/AppContainer';
 // import Navbar from './components/Navbar';
 // import AppRoutes from './containers/AppRoutes';
 // import MusicSystem from './containers/MusicSystem';
-import MixingDesk from './features/mixingDesk/MixingDesk';
+// import MixingDesk from './features/mixingDesk/MixingDesk';
+import GuitarExplorer from './features/guitarExplorer/GuitarExplorer';
 
 // function ContentDiv({ children }) {
 //   return (
@@ -25,7 +26,8 @@ function App() {
         <AppRoutes />
       </ContentDiv> */}
       {/* <MusicSystem /> */}
-      <MixingDesk />
+      {/* <MixingDesk /> */}
+      <GuitarExplorer />
     </AppContainer>
   );
 }
