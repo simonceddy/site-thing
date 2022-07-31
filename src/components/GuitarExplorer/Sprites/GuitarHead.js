@@ -3,8 +3,8 @@ function GuitarHead({ onClick }) {
     <>
       <g onClick={onClick}>
         {/* <title>hd</title> */}
-        <path d="M 420 90 C 435 95 465 95 480 85 C 493.001 76.333 524.722 60.389 555 70 L 555 90 C 540 175 550 300 555 310 C 535 310 525 315 520 330 L 450 330 C 445 315 440 310 420 310 C 425 300 425 130 420 90 Z" style={{ stroke: 'url(#std-stroke)', fill: 'url(#body-fill)' }} />
-        <path d="M 420 90 C 435 95 465 95 480 85 C 495 75 515 55 555 70 C 540 155 550 295 555 305 C 535 305 525 315 520 330 L 450 330 C 445 315 440 305 420 305 C 425 295 425 130 420 90 Z" style={{ stroke: 'url(#std-stroke)', fill: 'url(#body-fill)' }} />
+        <path d="M 420 90 C 435 95 465 95 480 85 C 493.001 76.333 524.722 60.389 555 70 L 555 90 C 540 175 550 300 555 310 C 535 310 525 315 520 330 L 450 330 C 445 315 440 310 420 310 C 425 300 425 130 420 90 Z" style={{ stroke: 'url(#std-stroke)', fill: 'url(#head-fill)' }} />
+        <path d="M 420 90 C 435 95 465 95 480 85 C 495 75 515 55 555 70 C 540 155 550 295 555 305 C 535 305 525 315 520 330 L 450 330 C 445 315 440 305 420 305 C 425 295 425 130 420 90 Z" style={{ stroke: 'url(#std-stroke)', fill: 'url(#head-fill)' }} />
       </g>
       <g onClick={onClick}>
         {/* <title>tuningpegs</title> */}

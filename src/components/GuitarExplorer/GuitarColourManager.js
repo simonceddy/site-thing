@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
 import ColourPicker from '../../containers/ColourPicker';
+import TabButton from '../Shared/TabButton';
 
 function GuitarColourManager({ colours = {}, setColour }) {
   const keys = Object.keys(colours);
@@ -17,15 +18,14 @@ function GuitarColourManager({ colours = {}, setColour }) {
     <div className="flex flex-row justify-start items-start w-full">
       <div className="flex flex-col justify-start items-start">
         {keys.map((id) => (colours[id] && colours[id].value ? (
-          <button
+          <TabButton
+            className="w-full"
             key={`${id}-toggle-colour-tab`}
-            type="button"
             onClick={() => setCurrentTab(id)}
-            className={`${currentTab === id ? 'bg-slate-600 cursor-default text-yellow-100' : 'cursor-pointer bg-blue-500 text-red-100 hover:border-blue-400 active:border-green-400 hover:underline'} p-1 border-2 w-full text-left border-slate-700 font-mono font-bold`}
-            disabled={currentTab === id}
+            selected={currentTab === id}
           >
             {colours[id].name || id}
-          </button>
+          </TabButton>
         ) : null))}
       </div>
       <div>

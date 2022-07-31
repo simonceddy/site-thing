@@ -1,6 +1,7 @@
-function EMG85() {
+function EMG85({ position = 'neck' }) {
+  const matrix = { x: 0, y: position === 'neck' ? -176 : 0 };
   return (
-    <g>
+    <g transform={`matrix(1, 0, 0, 1, ${matrix.x}, ${matrix.y})`}>
       <title>emg85</title>
       <path
         d="M 416 1342 L 580 1342 L 580 1424 L 416 1424 L 416 1342 Z"

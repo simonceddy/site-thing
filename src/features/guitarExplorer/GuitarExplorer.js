@@ -18,16 +18,23 @@ import GuitarViewer from '../../components/GuitarExplorer/GuitarViewer';
 import Nameplate from '../../components/GuitarExplorer/Sprites/Nameplate';
 import useSvgZoom from '../../hooks/useSvgZoom';
 import ColourPicker from '../../containers/ColourPicker';
-import { setAllParts, setColour, toggleCustomColours } from './guitarSlice';
+import {
+  setAllParts, setColour, setGuitarPart, toggleCustomColours
+} from './guitarSlice';
 import GuitarColourManager from '../../components/GuitarExplorer/GuitarColourManager';
+import PartPicker from '../../components/GuitarExplorer/Parts/PartPicker';
+import TabButton from '../../components/Shared/TabButton';
 
 function RenderPickups({ bridgePickup, neckPickup }) {
-  return (
-    <>
-      <neckPickup.Component />
-      <bridgePickup.Component />
-    </>
-  );
+  if (bridgePickup.Component && neckPickup.Component) {
+    return (
+      <>
+        <neckPickup.Component position="neck" />
+        <bridgePickup.Component position="bridge" />
+      </>
+    );
+  }
+  return null;
 }
 
 function GuitarExplorer() {
@@ -39,7 +46,8 @@ function GuitarExplorer() {
     parts
   } = useSelector((state) => state.guitar);
   const [viewOriginal, setViewOriginal] = useState(false);
-
+  const [useCustomParts, setUseCustomParts] = useState(false);
+  const [currentTab, setCurrentTab] = useState(null);
   const {
     ref,
     onMouseDown,
@@ -54,8 +62,8 @@ function GuitarExplorer() {
 
   return (
     <div className="flex flex-row justify-between items-start h-full w-full p-1">
-      <div className="flex flex-col justify-start items-center w-1/2 mr-1 mb-1" style={{ height: '95%' }}>
-        <div
+      <div className="flex flex-col justify-start items-center w-1/2 mr-1 mb-1 overflow-y-scroll overflow-hidden whitespace-nowrap" style={{ height: '95%' }}>
+        {/* <div
           className="p-1 m-1 border border-slate-800 dark:border-slate-200 rounded"
           style={{
             height: '40%',
@@ -68,43 +76,59 @@ function GuitarExplorer() {
           <div>
             {content.body}
           </div>
-        </div>
+        </div> */}
         <div
-          className="flex flex-col justify-start items-center p-1 m-1 border border-slate-800 dark:border-slate-200 rounded flex-1"
+          className="flex flex-row justify-start items-center p-1 m-1 border border-slate-800 dark:border-slate-200 rounded"
           style={{ width: '90%' }}
         >
-          <button
-            type="button"
-            onClick={() => Promise.resolve(
-              setViewOriginal(!viewOriginal)
-            )
-              .then(() => dispatch(setAllParts({
+          <TabButton
+            onClick={() => {
+              setViewOriginal(!viewOriginal);
+              dispatch(setAllParts({
                 neckPickup: viewOriginal
                   ? 'emg60'
                   : 'matonSingleCoil',
                 bridgePickup: viewOriginal
                   ? 'emg85'
                   : 'matonSwitchable',
-              })))
-              .catch(console.error)}
+              }));
+            }}
           >
             {viewOriginal ? 'Show Current' : 'Show Original'}
-          </button>
-          <button
-            type="button"
+          </TabButton>
+          <TabButton
             onClick={() => dispatch(toggleCustomColours())}
           >
             Custom Colour
-          </button>
+          </TabButton>
+          <TabButton
+            onClick={() => setUseCustomParts(!useCustomParts)}
+          >
+            Custom Parts
+          </TabButton>
         </div>
         {useCustomColours ? (
-          <div className="p-1 m-1 border border-slate-800 dark:border-slate-200 rounded">
+          <div
+            className="p-1 m-1 border border-slate-800 dark:border-slate-200 rounded"
+            style={{ width: '90%' }}
+          >
             <GuitarColourManager
               colours={customColours}
               setColour={throttle(({ value, key }) => {
                 // console.log(value, key);
                 dispatch(setColour({ value: value.hex, key }));
               }, 100)}
+            />
+          </div>
+        ) : null}
+        {useCustomParts ? (
+          <div
+            className="p-1 m-1 border border-slate-800 dark:border-slate-200 rounded"
+            style={{ width: '90%' }}
+          >
+            <PartPicker
+              parts={parts}
+              setPart={(v) => dispatch(setGuitarPart(v))}
             />
           </div>
         ) : null}

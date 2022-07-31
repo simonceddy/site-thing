@@ -5,6 +5,9 @@ import {
   MatonSingleCoil,
   MatonSwitchable
 } from '../../components/GuitarExplorer/Sprites/Pickups';
+import FishmanFluenceClassic from '../../components/GuitarExplorer/Sprites/Pickups/FishmanFluenceClassic';
+import FishmanM from '../../components/GuitarExplorer/Sprites/Pickups/FishmanM';
+import FishmanOpen from '../../components/GuitarExplorer/Sprites/Pickups/FishmanOpen';
 
 export const guitarInfo = {
   url: 'https://maton.com.au/product/ms500',
@@ -54,26 +57,38 @@ export const guitarParts = {
   pickups: {
     matonSingleCoil: {
       name: 'Maton single coil',
-      Component: () => <MatonSingleCoil />
+      Component: MatonSingleCoil
     },
     emg60: {
       name: 'EMG60',
-      Component: () => <EMG60 />
+      Component: EMG60,
     },
     matonSwitchable: {
       name: 'Maton switchable humbucker',
-      Component: () => <MatonSwitchable />
+      Component: MatonSwitchable,
     },
     emg85: {
       name: 'EMG85',
-      Component: () => <EMG85 />
+      Component: EMG85,
+    },
+    fishmanFluenceClassic: {
+      name: 'Fishman Fluence Classic',
+      Component: FishmanFluenceClassic,
+    },
+    fishmanCustomMattHeafy: {
+      name: 'Fishman Custom Matt Heafy',
+      Component: FishmanM,
+    },
+    fishmanOpen: {
+      name: 'Fishman Open Core Classic',
+      Component: FishmanOpen,
     },
   },
   plate: {
     none: {},
     matonPlate: {
       name: 'Standard Maton Plate',
-      Component: () => <BodyPlate />
+      Component: BodyPlate,
     }
   },
   strings: {
@@ -99,3 +114,20 @@ export const guitarParts = {
     matonNeck: {}
   }
 };
+
+export function makePartsArray(parts = {}) {
+  return Object.keys(parts).map((key) => ({
+    key,
+    ...parts[key]
+  }));
+}
+
+export function getPartsFor(key) {
+  switch (key) {
+    case 'neckPickup':
+    case 'bridgePickup':
+      return makePartsArray(guitarParts.pickups);
+    default:
+      return guitarParts[key] ? makePartsArray(guitarParts[key]) : [];
+  }
+}

@@ -22,6 +22,14 @@ const GuitarSvg = forwardRef(({
             }}
           />
         </linearGradient>
+        <linearGradient id="plate-fill">
+          <stop
+            style={{
+              stopColor: colours && colours.plateFill
+                ? colours.plateFill.value : 'rgb(0, 0, 0)'
+            }}
+          />
+        </linearGradient>
         <linearGradient id="std-stroke">
           <stop
             style={{
@@ -77,6 +85,33 @@ const GuitarSvg = forwardRef(({
               ? colours.neckFill.value : 'rgb(0, 0, 0)'
           }}
           />
+        </linearGradient>
+        <linearGradient id="head-fill">
+          {/* <title>emg-fill</title> */}
+          <stop style={{
+            stopColor: colours && colours.headFill
+              ? colours.headFill.value : 'rgb(0, 0, 0)'
+          }}
+          />
+        </linearGradient>
+        <linearGradient id="matonpu-fill">
+          <stop style={{
+            stopColor: colours && colours.pickupFill
+              ? colours.pickupFill.value : 'rgb(52, 64, 61)'
+          }}
+          />
+        </linearGradient>
+        <linearGradient id="fishman-c-fill">
+          <stop style={{
+            stopColor: colours && colours.pickupFill
+              ? colours.pickupFill.value : 'rgb(222, 221, 219)'
+          }}
+          />
+        </linearGradient>
+        <linearGradient id="gradient-1-0" gradientUnits="userSpaceOnUse" x1="320" y1="1151.985" x2="320" y2="1235.969" gradientTransform="matrix(0.470817, -0.882231, 1.809865, 0.95256, -1991.598548, 338.979235)" xlinkHref="#fishman-m-fill" />
+        <linearGradient id="fishman-m-fill">
+          <stop offset="0" style={{ stopColor: 'rgb(23, 21, 24)' }} />
+          <stop offset="1" style={{ stopColor: 'rgb(69, 65, 70)' }} />
         </linearGradient>
       </defs>
       <g transform="matrix(1, 0, 0, 1, -178, -12)">

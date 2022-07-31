@@ -1,7 +1,8 @@
 import { ColorPicker, useColor } from 'react-color-palette';
-import 'react-color-palette/lib/css/styles.css';
 
-function ColourPicker({ onChange, colour = '#121212' }) {
+function ColourPicker({
+  onChange, colour = '#121212', height = 150, width = 150
+}) {
   const [color, setColor] = useColor('hex', colour);
 
   const colourSetter = (args) => {
@@ -11,11 +12,13 @@ function ColourPicker({ onChange, colour = '#121212' }) {
 
   return (
     <ColorPicker
-      width={200}
-      height={200}
+      width={width}
+      height={height}
       color={color}
       onChange={colourSetter}
       hideHSV
+      hideHEX
+      hideRGB
       dark
     />
   );

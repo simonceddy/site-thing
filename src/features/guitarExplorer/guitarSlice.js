@@ -12,6 +12,8 @@ export const guitarSlice = createSlice({
       stdStroke: { value: '#c8c8c8', name: 'Line' },
       stringColour: { value: '#acacac', name: 'Strings' },
       fretboardFill: { value: '#000000', name: 'Fretboard' },
+      headFill: { value: '#000000', name: 'Head' },
+      plateFill: { value: '#000000', name: 'Plate' },
       // neckFill: { value: '#000000', name: 'Neck' },
     },
     parts: {

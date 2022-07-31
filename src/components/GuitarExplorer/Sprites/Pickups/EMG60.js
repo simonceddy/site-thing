@@ -1,6 +1,7 @@
-function EMG60() {
+function EMG60({ position = 'neck' }) {
+  const matrix = { x: 0, y: position === 'neck' ? 0 : 176 };
   return (
-    <g>
+    <g transform={`matrix(1, 0, 0, 1, ${matrix.x}, ${matrix.y})`}>
       <title>emg60</title>
       <path
         d="M 416 1166 L 580 1166 L 580 1248 L 416 1248 L 416 1166 Z"
