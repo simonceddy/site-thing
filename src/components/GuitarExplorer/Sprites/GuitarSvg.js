@@ -113,6 +113,22 @@ const GuitarSvg = forwardRef(({
           <stop offset="0" style={{ stopColor: 'rgb(23, 21, 24)' }} />
           <stop offset="1" style={{ stopColor: 'rgb(69, 65, 70)' }} />
         </linearGradient>
+        <linearGradient id="np-fill">
+          <title>np-fill</title>
+          <stop style={{
+            stopColor: colours && colours.nameplateFill
+              ? colours.nameplateFill.value : 'rgb(0, 0, 0)'
+          }}
+          />
+        </linearGradient>
+        <linearGradient id="np-text">
+          <title>np-text</title>
+          <stop style={{
+            stopColor: colours && colours.nameplateText
+              ? colours.nameplateText.value : 'rgb(197, 197, 197)'
+          }}
+          />
+        </linearGradient>
       </defs>
       <g transform="matrix(1, 0, 0, 1, -178, -12)">
         {/* <title>gtr-front</title> */}

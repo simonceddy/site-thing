@@ -24,7 +24,7 @@ function PartPicker({ parts = {}, setPart }) {
           </TabButton>
         ))}
       </div>
-      <div className="flex flex-col justify-start items-start">
+      <div className="flex flex-col justify-start items-start flex-1">
         <PartSelectInput
           className="w-11/12"
           options={getPartsFor(currentTab)}

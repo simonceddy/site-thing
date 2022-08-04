@@ -16,8 +16,8 @@ function useSvgZoom(viewBox = defaultViewBox) {
 
   const setViewbox = (params = defaultViewBox) => {
     if (ref.current && ref.current.setAttribute) {
-      // console.log('svg found', params);
-      ref.current.setAttribute('viewbox', `${params.x} ${params.y} ${params.w} ${params.h}`);
+      console.log('svg found', params);
+      ref.current.setAttribute('viewBox', `${params.x} ${params.y} ${params.w} ${params.h}`);
     }
     setVb(params);
   };
@@ -39,7 +39,7 @@ function useSvgZoom(viewBox = defaultViewBox) {
     setViewbox({
       x: vb.x + dx, y: vb.y + dy, w: vb.w - dw, h: vb.h - dh
     });
-    console.log(scale, zoom);
+    // console.log(scale, zoom);
   };
 
   const onMouseDown = (e) => {
@@ -54,7 +54,7 @@ function useSvgZoom(viewBox = defaultViewBox) {
       const dx = (startPoint.x - endPoint.x) / scale;
       const dy = (startPoint.y - endPoint.y) / scale;
       const movedViewBox = {
-        x: viewBox.x + dx, y: viewBox.y + dy, w: viewBox.w, h: viewBox.h
+        x: vb.x + dx, y: vb.y + dy, w: vb.w, h: vb.h
       };
       setViewbox(movedViewBox);
     }
@@ -67,7 +67,7 @@ function useSvgZoom(viewBox = defaultViewBox) {
       const dy = (startPoint.y - endPoint.y) / scale;
       setIsPanning(false);
       setViewbox({
-        x: viewBox.x + dx, y: viewBox.y + dy, w: viewBox.w, h: viewBox.h
+        x: vb.x + dx, y: vb.y + dy, w: vb.w, h: vb.h
       });
     }
   };

@@ -1,29 +1,30 @@
 /* eslint-disable no-unused-vars */
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { throttle } from 'lodash';
 import GuitarSvg from '../../components/GuitarExplorer/Sprites/GuitarSvg';
 import GuitarBody from '../../components/GuitarExplorer/Sprites/GuitarBody';
 import BodyPlate from '../../components/GuitarExplorer/Sprites/BodyPlate';
 import Neck from '../../components/GuitarExplorer/Sprites/Neck';
 import GuitarHead from '../../components/GuitarExplorer/Sprites/GuitarHead';
-import PlateContent from '../../components/GuitarExplorer/Sprites/PlateContent';
-import Pickups from '../../components/GuitarExplorer/Sprites/MatonPickups';
 import Strings from '../../components/GuitarExplorer/Sprites/Strings';
-import { articles, guitarParts } from './support';
+import { articles } from './support';
+import { guitarParts } from './support/partlist';
 import Bridge from '../../components/GuitarExplorer/Sprites/Bridge';
-import EMGPickups from '../../components/GuitarExplorer/Sprites/EMGPickups';
-import BlackKnobs from '../../components/GuitarExplorer/Sprites/BlackKnobs';
 import GuitarViewer from '../../components/GuitarExplorer/GuitarViewer';
 import Nameplate from '../../components/GuitarExplorer/Sprites/Nameplate';
 import useSvgZoom from '../../hooks/useSvgZoom';
-import ColourPicker from '../../containers/ColourPicker';
 import {
-  setAllParts, setColour, setGuitarPart, toggleCustomColours
+  setAllParts, setColour, setGuitarPart, setNameplateContent, setPreset
 } from './guitarSlice';
 import GuitarColourManager from '../../components/GuitarExplorer/GuitarColourManager';
 import PartPicker from '../../components/GuitarExplorer/Parts/PartPicker';
 import TabButton from '../../components/Shared/TabButton';
+// import RenderGuitarPart from '../../components/GuitarExplorer/Util/RenderGuitarPart';
+import RenderPlateContent from '../../components/GuitarExplorer/Util/RenderPlateContent';
+import TabContainer from '../../components/GuitarExplorer/TabContainer';
+import RenderGuitarPart from '../../components/GuitarExplorer/Util/RenderGuitarPart';
+import GuitarPresets from '../../components/GuitarExplorer/GuitarPresets';
+import { buildPresets } from './support/presets';
 
 function RenderPickups({ bridgePickup, neckPickup }) {
   if (bridgePickup.Component && neckPickup.Component) {
@@ -41,12 +42,11 @@ function GuitarExplorer() {
   const [content, setContent] = useState(articles.summary);
   const dispatch = useDispatch();
   const {
-    customColours,
-    useCustomColours,
-    parts
+    colours,
+    parts,
+    nameplateContent,
+    nameplateFont
   } = useSelector((state) => state.guitar);
-  const [viewOriginal, setViewOriginal] = useState(false);
-  const [useCustomParts, setUseCustomParts] = useState(false);
   const [currentTab, setCurrentTab] = useState(null);
   const {
     ref,
@@ -82,56 +82,61 @@ function GuitarExplorer() {
           style={{ width: '90%' }}
         >
           <TabButton
-            onClick={() => {
-              setViewOriginal(!viewOriginal);
-              dispatch(setAllParts({
-                neckPickup: viewOriginal
-                  ? 'emg60'
-                  : 'matonSingleCoil',
-                bridgePickup: viewOriginal
-                  ? 'emg85'
-                  : 'matonSwitchable',
-              }));
-            }}
+            onClick={() => setCurrentTab('presets')}
           >
-            {viewOriginal ? 'Show Current' : 'Show Original'}
+            Presets
           </TabButton>
           <TabButton
-            onClick={() => dispatch(toggleCustomColours())}
+            onClick={() => setCurrentTab('colours')}
           >
-            Custom Colour
+            Colours
           </TabButton>
           <TabButton
-            onClick={() => setUseCustomParts(!useCustomParts)}
+            onClick={() => setCurrentTab('parts')}
           >
-            Custom Parts
+            Parts
+          </TabButton>
+          <TabButton
+            onClick={() => setCurrentTab('etc')}
+          >
+            Etc
           </TabButton>
         </div>
-        {useCustomColours ? (
-          <div
-            className="p-1 m-1 border border-slate-800 dark:border-slate-200 rounded"
-            style={{ width: '90%' }}
-          >
+        <TabContainer>
+          {currentTab === 'colours' ? (
             <GuitarColourManager
-              colours={customColours}
-              setColour={throttle(({ value, key }) => {
-                // console.log(value, key);
+              colours={colours}
+              setColour={({ value, key }) => {
+              // console.log(value, key);
                 dispatch(setColour({ value: value.hex, key }));
-              }, 100)}
+              }}
             />
-          </div>
-        ) : null}
-        {useCustomParts ? (
-          <div
-            className="p-1 m-1 border border-slate-800 dark:border-slate-200 rounded"
-            style={{ width: '90%' }}
-          >
+          ) : null}
+          {currentTab === 'parts' ? (
             <PartPicker
               parts={parts}
               setPart={(v) => dispatch(setGuitarPart(v))}
             />
-          </div>
-        ) : null}
+          ) : null}
+          {currentTab === 'presets' ? (
+            <GuitarPresets
+              presets={buildPresets}
+              loadPreset={(preset) => dispatch(setPreset(preset))}
+            />
+          ) : null}
+          {currentTab === 'etc' ? (
+            <label htmlFor="nameplate-content-input" className="w-full flex flex-row justify-between items-center">
+              <span>Nameplate Content</span>
+              <input
+                id="nameplate-content-input"
+                className="bg-black text-center text-lime-400 italic font-mono p-1 border-2 w-1/2 rounded border-green-600 focus:border-blue-400 text-sm"
+                type="text"
+                value={nameplateContent}
+                onChange={(e) => dispatch(setNameplateContent(e.target.value))}
+              />
+            </label>
+          ) : null}
+        </TabContainer>
       </div>
       <GuitarViewer
         onMouseDown={onMouseDown}
@@ -142,22 +147,22 @@ function GuitarExplorer() {
       >
         <GuitarSvg
           ref={ref}
-          colours={useCustomColours ? customColours : null}
+          colours={colours}
           // viewBox={viewBox}
         >
           <GuitarBody
             onClick={() => setContent(articles.guitarBody)}
           />
-          <BodyPlate />
+          <RenderGuitarPart part={parts.plate} type="plate" />
           <Neck
             onClick={() => setContent(articles.guitarNeck)}
           />
           <GuitarHead
             onClick={() => setContent(articles.headAndTuners)}
           />
-          {viewOriginal ? <PlateContent /> : <BlackKnobs />}
+          <RenderPlateContent parts={parts} />
           <Bridge />
-          <Nameplate />
+          <Nameplate content={nameplateContent} fontFamily={nameplateFont} />
           {guitarParts.pickups[parts.neckPickup]
             && guitarParts.pickups[parts.bridgePickup]
             ? (

@@ -3,7 +3,7 @@ function PartSelectInput({
 }) {
   return (
     <select
-      value={value}
+      value={value || ''}
       onChange={onChange}
       className={`${className} bg-black text-lime-400 italic font-mono p-1 border-2 rounded border-green-600 focus:border-blue-400 text-sm`}
     >
