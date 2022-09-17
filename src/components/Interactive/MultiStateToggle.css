@@ -1,0 +1,39 @@
+.mtoggle-state-0 > .static-circle {
+  background-color: gray;
+}
+
+.mtoggle-state-1 > .static-circle {
+  background: radial-gradient(rgb(0, 255, 0), gray 90%);
+}
+
+.mtoggle-state-2 > .static-circle {
+  background: radial-gradient(rgb(255, 255, 0), gray 90%);
+}
+
+.mtoggle-state-3 > .static-circle {
+  background: radial-gradient(rgb(255, 0, 0), gray 90%);
+}
+
+.mtoggle-state-4 > .static-circle {
+  background: radial-gradient(rgb(0, 0, 255), gray 90%);
+}
+
+.mtoggle-state-5 > .static-circle {
+  background: radial-gradient(rgb(255, 0, 255), gray 90%);
+}
+
+.mtoggle-state-6 > .static-circle {
+  background: radial-gradient(rgb(255, 132, 0), gray 90%);
+}
+
+.mtoggle-state-7 > .static-circle {
+  background: radial-gradient(rgb(95, 237, 237), gray 90%);
+}
+
+.mtoggle-state-8 > .static-circle {
+  background: radial-gradient(rgb(12, 127, 255), gray 90%);
+}
+
+.mtoggle:hover > .static-circle {
+  border-color: aquamarine;
+}

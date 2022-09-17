@@ -4,17 +4,27 @@ import ContentContainer from '../components/ContentContainer';
 import HomePage from '../pages/Home';
 import DevPage from '../pages/Dev';
 import AudioPage from '../pages/Audio';
-import MiscStuff from './MiscStuff';
-import SynthBasics from '../features/synthBasics/SynthBasics';
+// import MiscStuff from './MiscStuff';
+import SuspenseWrapper from '../components/SuspenseWrapper';
+// import SynthBasics from '../features/synthBasics/SynthBasics';
 // import MusicSystem from './MusicSystem';
 
 const MusicSystem = lazy(() => import('./MusicSystem'));
+const GuitarThing = lazy(() => import('../features/guitarExplorer/GuitarExplorer'));
 
 function AsyncMusicSystem() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <MusicSystem />
     </Suspense>
+  );
+}
+
+function AsyncGuitarThing() {
+  return (
+    <SuspenseWrapper>
+      <GuitarThing />
+    </SuspenseWrapper>
   );
 }
 
@@ -25,10 +35,10 @@ function AppRoutes() {
         <Route path="/" element={<HomePage />} />
         <Route path="/dev" element={<DevPage />} />
         <Route path="/audio" element={<AudioPage />} />
-        <Route path="/audio-system" element={<AsyncMusicSystem />} />
+        <Route path="/music-system" element={<AsyncMusicSystem />} />
         <Route path="/settings" element={<AudioPage />} />
-        <Route path="/misc" element={<MiscStuff />} />
-        <Route path="/misc/synth-basics" element={<SynthBasics />} />
+        {/* <Route path="/misc" element={<MiscStuff />} /> */}
+        <Route path="/guitar" element={<AsyncGuitarThing />} />
       </Routes>
     </ContentContainer>
   );

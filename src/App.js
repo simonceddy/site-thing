@@ -1,33 +1,28 @@
 import React from 'react';
 import AppContainer from './components/AppContainer';
-// import AppTitle from './components/AppTitle';
+import AppTitle from './components/AppTitle';
 // import Navbar from './components/Navbar';
-// import AppRoutes from './containers/AppRoutes';
-// import MusicSystem from './containers/MusicSystem';
-// import MixingDesk from './features/mixingDesk/MixingDesk';
-import GuitarExplorer from './features/guitarExplorer/GuitarExplorer';
+import TopControlBar from './components/TopControlBar';
+import AppRoutes from './containers/AppRoutes';
 
-// function ContentDiv({ children }) {
-//   return (
-//     <div
-//   className="flex w-full flex-1 flex-col justify-center items-start md:flex-row md:justify-start"
-//     >
-//       {children}
-//     </div>
-//   );
-// }
+function ContentDiv({ children }) {
+  return (
+    <div
+      className="flex w-full flex-1 flex-col justify-center items-center overflow-y-auto"
+    >
+      {children}
+    </div>
+  );
+}
 
 function App() {
   return (
     <AppContainer>
-      {/* <AppTitle />
+      <AppTitle />
       <ContentDiv>
-        <Navbar />
+        <TopControlBar />
         <AppRoutes />
-      </ContentDiv> */}
-      {/* <MusicSystem /> */}
-      {/* <MixingDesk /> */}
-      <GuitarExplorer />
+      </ContentDiv>
     </AppContainer>
   );
 }

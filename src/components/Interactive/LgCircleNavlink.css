@@ -1,0 +1,25 @@
+.lg-circle-button:hover > .static-circle {
+  border-color: aquamarine;
+}
+
+.lg-circle-button > .static-circle {
+  background-color: gray;
+}
+
+.lg-circle-button.active > .static-circle {
+  background: radial-gradient(rgb(233, 233, 139), gray 90%);
+}
+
+.lg-circle-button:hover {
+  color: aquamarine;
+}
+
+.lg-circle-button.active {
+  color: darkgoldenrod;
+}
+
+@media (prefers-color-scheme: dark) {  
+  .lg-circle-button.active {
+    color: rgb(206, 206, 111);
+  }
+}
