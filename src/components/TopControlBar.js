@@ -9,13 +9,18 @@ const controlItems = [
     end: true
   },
   {
+    to: '/dev',
+    label: 'dev',
+    end: true
+  },
+  {
     to: '/audio',
     label: 'audio',
     end: true
   },
   {
-    to: '/dev',
-    label: 'dev',
+    to: '/songs',
+    label: 'songs',
     end: true
   },
   {

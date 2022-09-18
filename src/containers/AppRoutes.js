@@ -6,6 +6,7 @@ import DevPage from '../pages/Dev';
 import AudioPage from '../pages/Audio';
 // import MiscStuff from './MiscStuff';
 import SuspenseWrapper from '../components/SuspenseWrapper';
+import Songs from '../features/songs/Songs';
 // import SynthBasics from '../features/synthBasics/SynthBasics';
 // import MusicSystem from './MusicSystem';
 
@@ -35,6 +36,7 @@ function AppRoutes() {
         <Route path="/" element={<HomePage />} />
         <Route path="/dev" element={<DevPage />} />
         <Route path="/audio" element={<AudioPage />} />
+        <Route path="/songs" element={<Songs />} />
         <Route path="/music-system" element={<AsyncMusicSystem />} />
         <Route path="/settings" element={<AudioPage />} />
         {/* <Route path="/misc" element={<MiscStuff />} /> */}
