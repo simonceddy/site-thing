@@ -1,6 +1,7 @@
 import React from 'react';
 import AppContainer from './components/AppContainer';
 import AppTitle from './components/AppTitle';
+import Navbar from './components/Navbar';
 // import Navbar from './components/Navbar';
 import TopControlBar from './components/TopControlBar';
 import AppRoutes from './containers/AppRoutes';
@@ -18,9 +19,11 @@ function ContentDiv({ children }) {
 function App() {
   return (
     <AppContainer>
-      <AppTitle />
       <ContentDiv>
-        <TopControlBar />
+        <Navbar>
+          <TopControlBar />
+          <AppTitle />
+        </Navbar>
         <AppRoutes />
       </ContentDiv>
     </AppContainer>
