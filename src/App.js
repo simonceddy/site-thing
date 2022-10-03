@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import AppContainer from './components/AppContainer';
 import AppTitle from './components/AppTitle';
@@ -5,6 +6,7 @@ import Navbar from './components/Navbar';
 // import Navbar from './components/Navbar';
 import TopControlBar from './components/TopControlBar';
 import AppRoutes from './containers/AppRoutes';
+import SCE from './sce';
 
 function ContentDiv({ children }) {
   return (
@@ -18,15 +20,16 @@ function ContentDiv({ children }) {
 
 function App() {
   return (
-    <AppContainer>
-      <ContentDiv>
-        <Navbar>
-          <TopControlBar />
-          <AppTitle />
-        </Navbar>
-        <AppRoutes />
-      </ContentDiv>
-    </AppContainer>
+    // <AppContainer>
+    //   <ContentDiv>
+    //     <Navbar>
+    //       <TopControlBar />
+    //       <AppTitle />
+    //     </Navbar>
+    //     <AppRoutes />
+    //   </ContentDiv>
+    // </AppContainer>
+    <SCE />
   );
 }
 
