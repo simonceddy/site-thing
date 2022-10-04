@@ -6,7 +6,7 @@ export const SCE_METADATA_PREFIX = 'se_sce_metadata';
 export async function loadProjects() {
   try {
     const project = await localforage.getItem(SCE_PROJECTS_PREFIX);
-    console.log(project);
+    // console.log(project);
     return project;
   } catch (e) {
     console.error(e);
@@ -17,7 +17,7 @@ export async function loadProjects() {
 export async function persist(state) {
   // console.log(state);
   if (!state.project || !state.project.id) {
-    console.log('project requires an id');
+    // console.log('project requires an id');
     return false;
   }
   try {
@@ -26,8 +26,9 @@ export async function persist(state) {
       ...projects,
       [state.project.id]: state
     });
-    console.log(res);
-    return true;
+    return res;
+    // console.log(res);
+    // return true;
   } catch (e) {
     console.error(e);
     return false;
@@ -37,8 +38,8 @@ export async function persist(state) {
 export async function persistMetadata(state) {
   try {
     const res = await localforage.setItem(SCE_METADATA_PREFIX, state);
-    console.log(res);
-    return true;
+    // console.log(res);
+    return res;
   } catch (e) {
     console.error(e);
     return false;
@@ -48,7 +49,7 @@ export async function persistMetadata(state) {
 export async function load() {
   try {
     const project = await localforage.getItem(SCE_PROJECTS_PREFIX);
-    console.log(project);
+    // console.log(project);
     return project;
   } catch (e) {
     console.error(e);
@@ -59,7 +60,7 @@ export async function load() {
 export async function loadMetadata() {
   try {
     const data = await localforage.getItem(SCE_METADATA_PREFIX);
-    console.log(data);
+    // console.log(data);
     return data;
   } catch (e) {
     console.error(e);

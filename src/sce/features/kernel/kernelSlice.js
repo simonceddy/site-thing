@@ -11,11 +11,13 @@ export const modes = {
 
 export const displayModes = {
   PROJ: 1,
+  LOADPROJ: 2
 };
 
 export const kernelSlice = createSlice({
   name: 'kernel',
   initialState: {
+    booted: false,
     mode: modes.EDIT,
     isPlaying: false,
     displayMode: displayModes.PROJ,
@@ -31,10 +33,18 @@ export const kernelSlice = createSlice({
       const newState = !state.isPlaying;
       // worker.postMessage(newState ? 'start' : 'stop');
       state.isPlaying = newState;
+    },
+    setBooted: (state) => {
+      state.booted = true;
     }
   },
 });
 
-export const { setMode, togglePlay, setDisplayMode } = kernelSlice.actions;
+export const {
+  setMode,
+  togglePlay,
+  setDisplayMode,
+  setBooted
+} = kernelSlice.actions;
 
 export default kernelSlice.reducer;

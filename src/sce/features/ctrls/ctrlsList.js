@@ -1,4 +1,5 @@
 import { toggleDarkMode } from '../display/displaySlice';
+import { displayModes, setDisplayMode } from '../kernel/kernelSlice';
 import EditModeButton from './EditModeButton';
 import PerfModeButton from './PerfModeButton';
 import PlayButton from './PlayButton';
@@ -28,7 +29,10 @@ const ctrlsList = [
   },
   {
     fnLabel: 'load',
-    content: '↑'
+    content: '↑',
+    fnAction: (dispatch) => {
+      dispatch(setDisplayMode(displayModes.LOADPROJ));
+    }
   },
   {},
   {
