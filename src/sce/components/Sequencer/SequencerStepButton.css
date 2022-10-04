@@ -2,7 +2,7 @@
   background-color: rgb(165, 165, 165);
   width: 30px;
   height: 30px;
-  border: solid 1px rgb(237, 237, 237);
+  border: solid 2px rgb(237, 237, 237);
 }
 
 .seq-step-button.seq-step-active {
@@ -12,5 +12,5 @@
 }
 
 .seq-step-button.seq-current-step {
-  border: solid 1px rgb(255, 255, 97);
+  border: solid 2px rgb(255, 255, 97);
 }

@@ -9,7 +9,7 @@
   align-items: flex-start;
   color: black;
   font-family: 'Roboto Mono', Courier, monospace;
-  font-size: small;
+  /* font-size: small; */
 }
 
 .display-screen.dark-mode {

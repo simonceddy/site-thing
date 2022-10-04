@@ -19,15 +19,17 @@ function Pads() {
     <PadsContainer>
       {padKeys.map((_v, idx) => (
         <PadButton
-          onClick={() => {
-            if (selectedTrackId !== idx && mode === modes.EDIT) {
+          onClick={(e) => {
+            if (selectedTrackId !== idx
+              && (mode === modes.EDIT || e.shiftKey)
+            ) {
               dispatch(setSelectedTrack(idx));
             } else if (mode === modes.PERF) {
               console.log('trigger drum pad');
             }
           }}
           key={`pad-button-${idx}`}
-          className={selectedTrackId === idx ? 'selected-track' : ''}
+          className={`${selectedTrackId === idx ? 'selected-track' : ''} ${mode === modes.EDIT ? 'pads-edit-mode' : ''} ${mode === modes.PERF ? 'pads-perf-mode' : ''}`}
         >
           {idx + 1}
         </PadButton>

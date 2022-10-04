@@ -6,7 +6,7 @@ const CircleButton = forwardRef(({
 }, ref) => (
   <button
     ref={ref}
-    className={`rounded-full circle-button ${className}`}
+    className={`rounded-full flex flex-col justify-center items-center circle-button ${className}`}
     type="button"
     onClick={onClick}
     style={{

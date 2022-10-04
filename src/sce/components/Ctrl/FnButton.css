@@ -2,10 +2,13 @@
   background-color: rgb(255, 234, 0);
   /* width: 30px;
   height: 30px; */
+  border: solid 1px rgb(237, 237, 237);
+  color: rgb(17, 17, 222);
 }
 
 .fn-button:active, .fn-button.shiftkey-down {
   background-color: rgb(116, 222, 116);
+  box-shadow: 0px 0px 10px 2px rgb(116, 222, 116);
 }
 
 .fn-button-container {

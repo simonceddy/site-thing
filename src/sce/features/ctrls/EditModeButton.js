@@ -7,6 +7,7 @@ function EditModeButton() {
   const dispatch = useDispatch();
   return (
     <CtrlButton
+      label="Edit"
       className={`active:bg-cyan-400 ${mode === modes.EDIT ? 'bg-orange-400' : 'bg-slate-400'}`}
       onClick={() => {
         if (mode !== modes.EDIT) dispatch(setMode(modes.EDIT));

@@ -4,7 +4,7 @@ function PadButton({ children, className, onClick }) {
   return (
     <button
       onClick={onClick}
-      className={`pad-button flex flex-col justify-end items-start p-0.5 text-sm text-yellow-500 ${className}`}
+      className={`pad-button flex flex-col justify-end items-start p-0.5 text-sm ${className}`}
       type="button"
     >
       {children}

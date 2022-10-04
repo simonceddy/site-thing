@@ -9,11 +9,12 @@ import Display from './features/display';
 import CtrlsPanel from './features/ctrls/CtrlsPanel';
 import CtrlKnob from './components/Ctrl/CtrlKnob';
 import MicroSDSlot from './components/MicroSDSlot';
+import ClockQuickCtrl from './features/clock/ClockQuickCtrl';
 
 function SCE() {
   return (
     <Provider store={store}>
-      <div className="w-full h-full bg-black">
+      <div className="w-full p-2 h-full dark:bg-purple-900 bg-blue-200">
         <SCEContainer>
           <div className="flex flex-row items-center justify-center">
             <div className="flex flex-col items-center justify-around">
@@ -21,6 +22,7 @@ function SCE() {
                 <Logo />
                 <MicroSDSlot />
               </div>
+              <ClockQuickCtrl />
               <Pads />
             </div>
             <div className="flex flex-col items-center justify-around pt-10">

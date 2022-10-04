@@ -30,7 +30,9 @@ function FnButton() {
         className="fn-button"
         onClick={() => console.log('fn key')}
         // radius={15}
-      />
+      >
+        fn
+      </CircleButton>
     </div>
   );
 }
